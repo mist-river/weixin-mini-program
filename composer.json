@@ -1,0 +1,13 @@
+{
+    "name": "taofeiyang/weixin-mini-program",
+    "description": "weixin mini program develop tools",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "taofeiyang",
+            "email": "taofeiyang@gmail.com"
+        }
+    ],
+    "require": {}
+}
