@@ -3,7 +3,7 @@
  * @Description:      微信具体配置类
  * 
  * @FileName:         Config.php
- * @Author :          jintao5@staff.sina.com.cn
+ * @Author :          taofeiyang@gmail.com
  * @CreatedTime:      Sun 20 Oct 2019 04:30:14 PM CST
  ************************************************************************/
 namespace Weixin\Tests\MiniProgram;

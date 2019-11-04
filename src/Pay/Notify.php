@@ -29,7 +29,7 @@ class Notify
         if ($notifyHandle instanceof NotifyHandleInterface) {
             $res = $notifyHandle->handlePayNotify($configObj, $data);
         } else {
-            throw WxException("支付失败！");
+            throw new WxException("支付失败！");
         }
         $dataObj = new DataBase();
         if ($res && $flag) {
@@ -50,8 +50,7 @@ class Notify
         if ($logClass instanceof LogInterface) {
             $logClass->add($logdata);
         }
-        print_r($returnXml);
-        die();
+        return $returnXml;
     }
 
     //退款通知
@@ -68,7 +67,7 @@ class Notify
         if ($notifyHandle instanceof NotifyHandleInterface) {
             $res = $notifyHandle->handleRefundNotify($configObj, $data);
         } else {
-            throw WxException("支付失败！");
+            throw new WxException("支付失败！");
         }
 
         $dataObj = new DataBase();
@@ -90,7 +89,6 @@ class Notify
         if ($logClass instanceof LogInterface) {
             $logClass->add($logdata);
         }
-        print_r($returnXml);
-        die();
+        return $returnXml;
     }
 }

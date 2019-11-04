@@ -3,7 +3,7 @@
  * @Description:      支付客户端测试类
  * 
  * @FileName:         ClientTest.php
- * @Author :          jintao5@staff.sina.com.cn
+ * @Author :          taofeiyang@gmail.com
  * @CreatedTime:      Sun 03 Nov 2019 09:07:44 PM CST
  ************************************************************************/
 namespace Weixin\Tests\MiniProgram;
@@ -30,7 +30,6 @@ class ClientTest extends TestCase
         $inputObj->set('openid', "");
         try {
             $order = Client::unifiedOrder($configObj, $inputObj);
-            $this->assertArrayHasKey('appId', $order);
             $this->assertArrayHasKey('appId', $order);
             $this->assertArrayHasKey('nonceStr', $order);
             $this->assertArrayHasKey('package', $order);
