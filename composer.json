@@ -9,5 +9,14 @@
             "email": "taofeiyang@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": { "Weixin\\MiniProgram\\": "src/" }
+    },  
+    "autoload-dev": {
+        "psr-4": { "Weixin\\Tests\\MiniProgram\\": "tests/" }
+    }  
 }
