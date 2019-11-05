@@ -17,6 +17,11 @@ class Config implements ConfigInterface
         return WxConfig::APPID;
     }
 
+    public function getAppSecret()
+    {
+        return WxConfig::APPSECRET;
+    }
+
     //获取商户id
     public function getMchId()
     {

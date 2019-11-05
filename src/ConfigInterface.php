@@ -13,6 +13,9 @@ interface ConfigInterface
     //获取appid
     public function getAppid();
 
+    //获取app secret
+    public function getAppSecret();
+
     //获取商户id
     public function getMchId();
     
