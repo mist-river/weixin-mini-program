@@ -12,12 +12,12 @@ use PHPUnit\Framework\TestCase;
 use Weixin\MiniProgram\WxException;
 use Weixin\MiniProgram\Common\Api;
 
-class CommonTest extends TestCase
+class ApiTest extends TestCase
 {
     //测试登录
     public function testLogin()
     {
-        $code = '043PYgrY0a5icV1BwBqY06norY0PYgrK';
+        $code = '043e4V312m7sVW0j6L212bpH312e4V3w';
         $res = '';
         try {
             $res = Api::login($code);
@@ -37,6 +37,30 @@ class CommonTest extends TestCase
             $res = Api::getAccessToken();
             $this->assertArrayHasKey('access_token', $res);
             $this->assertArrayHasKey('expires_in', $res);
+            print_r($res);
+        } catch (WxException $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    //测试发送模板消息
+    public function testSendSubscribeMessage()
+    {
+        $res = '';
+        try {
+            //调用微信接口access_token
+            $accessToken = '';
+            //用户openid
+            $touser = '';
+            //模板id
+            $template_id = '';
+            $data['thing4']['value'] = '测试报名活动';
+            $data['date5']['value'] = '2017-01-05 9:30';
+            $data['phrase3']['value'] = '报名成功';
+            $page = 'index';
+            $res = Api::sendSubscribeMessage($accessToken, $touser, $template_id, $data, $page);
+            $this->assertArrayHasKey('errcode', $res);
+            $this->assertArrayHasKey('errmsg', $res);
             print_r($res);
         } catch (WxException $e) {
             print_r($e->getMessage());

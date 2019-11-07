@@ -16,6 +16,7 @@ class Api
     const LOGIN_API = 'https://api.weixin.qq.com/sns/jscode2session';
     const TOKEN_API = 'https://api.weixin.qq.com/cgi-bin/token';
     const WXACODE_UNLIMITED_API = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit';
+    const SUBSCRIBE_MESSAGE_SEND_API = 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send';
 
     //小程序登录
     public static function login($code)
@@ -47,7 +48,21 @@ class Api
         return $resArr;
     }
 
-    //curl
+    //发送订阅消息
+    public static function sendSubscribeMessage($accessToken, $touser, $template_id, $data, $page = '')
+    {
+        $params['touser'] = $touser;
+        $params['template_id'] = $template_id;
+        $params['page'] = $page;
+        $params['data'] = $data;
+        $paramsJson = json_encode($params, JSON_UNESCAPED_UNICODE);
+        $url = self::SUBSCRIBE_MESSAGE_SEND_API . '?access_token=' . $accessToken;
+        $resJson = self::curlPost($url, $paramsJson, 0.5);
+        $resArr  = json_decode($resJson, true);
+        return $resArr;
+    }
+
+    //curlGet
     public static function curlGet($url, $headerArray, $timeout)
     {
         $ch = curl_init();
@@ -55,6 +70,38 @@ class Api
         curl_setopt($ch, CURLOPT_HTTPHEADER,$headerArray);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT,$timeout);
+        //运行curl
+        $data = curl_exec($ch);
+        //返回结果
+        if($data){
+            curl_close($ch);
+            return $data;
+        } else { 
+            $error = curl_errno($ch);
+            curl_close($ch);
+            throw new WxException("curl出错，错误码:$error");
+        }
+    }
+
+    //curlPost
+    public static function curlPost($url, $params, $timeout)
+    {
+        $ch = curl_init();
+        $curlVersion = curl_version();
+        $ua = "WxTool/CURL/".$curlVersion['version'];
+
+        //设置超时
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_USERAGENT, $ua);
+        //设置header
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        //要求结果为字符串且输出到屏幕上
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        
+        //post提交方式
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
         //运行curl
         $data = curl_exec($ch);
         //返回结果
