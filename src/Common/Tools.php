@@ -9,7 +9,6 @@
 namespace Weixin\MiniProgram\Common;
 
 use Weixin\MiniProgram\WxException;
-use Weixin\Tests\MiniProgram\Config;
 
 class Tools
 {

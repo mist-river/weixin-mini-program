@@ -17,10 +17,11 @@ class ApiTest extends TestCase
     //测试登录
     public function testLogin()
     {
+        $configObj = new Config();
         $code = '043e4V312m7sVW0j6L212bpH312e4V3w';
         $res = '';
         try {
-            $res = Api::login($code);
+            $res = Api::login($configObj, $code);
             $this->assertArrayHasKey('session_key', $res);
             $this->assertArrayHasKey('openid', $res);
             print_r($res);
@@ -32,9 +33,10 @@ class ApiTest extends TestCase
     //测试获取access_token
     public function testGetAccessToken()
     {
+        $configObj = new Config();
         $res = '';
         try {
-            $res = Api::getAccessToken();
+            $res = Api::getAccessToken($configObj);
             $this->assertArrayHasKey('access_token', $res);
             $this->assertArrayHasKey('expires_in', $res);
             print_r($res);

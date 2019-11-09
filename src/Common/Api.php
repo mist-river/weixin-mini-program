@@ -9,7 +9,6 @@
 namespace Weixin\MiniProgram\Common;
 
 use Weixin\MiniProgram\WxException;
-use Weixin\Tests\MiniProgram\Config;
 
 class Api
 {
@@ -19,12 +18,11 @@ class Api
     const SUBSCRIBE_MESSAGE_SEND_API = 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send';
 
     //小程序登录
-    public static function login($code)
+    public static function login($configObj, $code)
     {   
         if(! $code) {
             throw new WxException("缺失code参数！");
         }
-        $configObj = new Config();
         $params['appid'] = $configObj->getAppid();
         $params['secret'] = $configObj->getAppSecret();
         $params['js_code'] = $code;
@@ -36,9 +34,8 @@ class Api
     }
 
     //获取access_token
-    public static function getAccessToken()
+    public static function getAccessToken($configObj)
     {   
-        $configObj = new Config();
         $params['appid'] = $configObj->getAppid();
         $params['secret'] = $configObj->getAppSecret();
         $params['grant_type'] = 'client_credential';
