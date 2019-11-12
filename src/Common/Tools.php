@@ -3,7 +3,7 @@
  * @Description:      工具类
  * 
  * @FileName:         Tools.php
- * @Author :          jintao5@staff.sina.com.cn
+ * @Author :          taofeiyang@gmail.com
  * @CreatedTime:      Thu 07 Nov 2019 10:57:27 AM CST
  ************************************************************************/
 namespace Weixin\MiniProgram\Common;

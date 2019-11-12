@@ -3,7 +3,7 @@
  * @Description:
  * 
  * @FileName:         ToolsTest.php
- * @Author :          jintao5@staff.sina.com.cn
+ * @Author :          taofeiyang@gmail.com
  * @CreatedTime:      Thu 07 Nov 2019 12:34:22 PM CST
  ************************************************************************/
 namespace Weixin\Tests\MiniProgram;

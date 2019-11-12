@@ -59,6 +59,19 @@ class Api
         return $resArr;
     }
 
+    //生成小程序码
+    public static function getWxacodeUnlimited($accessToken, $params)
+    {   
+        $url = self::WXACODE_UNLIMITED_API . '?access_token=' . $accessToken;
+        $paramsJson = json_encode($params);
+        $resJson = self::curlPost($url, $paramsJson, 3); 
+        $resArr = json_decode($resJson, true);
+        if ($resArr['errcode']) {
+            throw new WxException($resArr['errmsg']);
+        }   
+        return "data:image/png;base64," . base64_encode($resJson);
+    }   
+
     //curlGet
     public static function curlGet($url, $headerArray, $timeout)
     {

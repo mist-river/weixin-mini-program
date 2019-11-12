@@ -50,7 +50,6 @@ class ApiTest extends TestCase
     {
         $res = '';
         try {
-            //调用微信接口access_token
             $accessToken = '';
             //用户openid
             $touser = '';
@@ -63,6 +62,24 @@ class ApiTest extends TestCase
             $res = Api::sendSubscribeMessage($accessToken, $touser, $template_id, $data, $page);
             $this->assertArrayHasKey('errcode', $res);
             $this->assertArrayHasKey('errmsg', $res);
+            print_r($res);
+        } catch (WxException $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    //测试生成小程序码
+    //https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html
+    public function testGetWxacodeUnlimited()
+    {
+        try {
+            $accessToken = '';
+            $params['scene'] = 'xxxx';
+            $params['is_hyaline'] = true;
+            $params['auto_color'] = true;
+            $params['line_color'] = ["r"=>185, "g"=>185, "b"=>185];
+            $res = Api::getWxacodeUnlimited($accessToken, $params);
+            $this->assertNotEmpty($res);
             print_r($res);
         } catch (WxException $e) {
             print_r($e->getMessage());
