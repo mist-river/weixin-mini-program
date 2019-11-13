@@ -37,6 +37,6 @@
 
 ##### 安装及使用
 ###### 安装
-composer install taofeiyang/weixin-mini-program
+composer require taofeiyang/weixin-mini-program
 ###### 使用
 tests目录中有完整的测试脚本，这些脚本可以作为demo直接参考使用，所有测试脚本均通过phpunit测试通过。
