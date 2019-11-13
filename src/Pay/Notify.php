@@ -29,7 +29,8 @@ class Notify
         if ($notifyHandle instanceof NotifyHandleInterface) {
             $res = $notifyHandle->handlePayNotify($configObj, $data);
         } else {
-            throw new WxException("error！");
+            $flag = false;
+            $errmsg = 'error!';
         }
         $dataObj = new DataBase();
         if ($res && $flag) {
@@ -67,7 +68,8 @@ class Notify
         if ($notifyHandle instanceof NotifyHandleInterface) {
             $res = $notifyHandle->handleRefundNotify($configObj, $data);
         } else {
-            throw new WxException("error！");
+            $flag = false;
+            $errmsg = 'error!';
         }
 
         $dataObj = new DataBase();
