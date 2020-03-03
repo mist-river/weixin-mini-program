@@ -22,10 +22,12 @@
 
 10. 退款回调
 
+11. 退款查询
+
 ##### 目录及文件介绍
 1. src为源码目录，tests目录为测试脚本目录。该sdk中所封装的所有功能均有对应的测试脚本。
 
-2. src/Common/Api封装了功能1、3、4、5，src/Common/Tools封装了功能2，src/Pay/Client封装了功能6、8、9，src/Pay/Notify封装了功能7、10
+2. src/Common/Api封装了功能1、3、4、5，src/Common/Tools封装了功能2，src/Pay/Client封装了功能6、8、9、11，src/Pay/Notify封装了功能7、10
 
 3. 文件ConfigInterface.php为配置接口类，使用该sdk必须实现该配置类。
 

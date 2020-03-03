@@ -79,4 +79,23 @@ class ClientTest extends TestCase
         }
     }
 
+    //测试退款查询
+    public function testRefundQuery()
+    {
+        $configObj = new Config();
+        $inputObj = new DataOrder();
+        //$inputObj->set('transaction_id', '');
+        //$inputObj->set('out_trade_no', '');
+        //$inputObj->set('out_refund_no', '');
+        $inputObj->set('refund_id', '50300103202020021014592816771');
+        try {
+            $refund = Client::refundQuery($configObj, $inputObj);
+            $this->assertArrayHasKey('result_code', $refund);
+            $this->assertArrayHasKey('return_code', $refund);
+            print_r($refund);
+        } catch (WxException $e) {
+            print_r($e->getMessage());
+        }
+    }
+
 }

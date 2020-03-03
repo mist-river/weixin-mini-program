@@ -17,6 +17,7 @@ class Client
     const UNIFIED_ORDER_API = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
     const ORDER_QUERY_API   = 'https://api.mch.weixin.qq.com/pay/orderquery';
     const ORDER_REFUND_API   = 'https://api.mch.weixin.qq.com/secapi/pay/refund';
+    const REFUND_QUERY_API   = 'https://api.mch.weixin.qq.com/pay/refundquery';
 
     //统一下单
     public static function unifiedOrder($configObj, $inputObj, $timeOut = 5)
@@ -103,6 +104,37 @@ class Client
         $logdata['response'] = $response;
         $logdata['costTime'] = $end - $start;
         $logdata['type'] = 'REFUND';
+        $logdata['ct'] = $logdata['mt'] = microtime(true);
+        $logClass = $configObj->getPayLogClass();
+        if ($logClass instanceof LogInterface) {
+            $logClass->add($logdata);
+        }
+
+        $result = DataResult::init($configObj, $response);
+        return $result;
+    }
+
+    //退款查询
+    public static function refundQuery($configObj, $inputObj, $timeOut = 5)
+    {
+        //初始化公共参数
+        $inputObj->init($configObj);
+        $inputObj->setSign($configObj);
+        $xml = $inputObj->toXml();
+
+        $logdata['url'] = self::REFUND_QUERY_API;
+        $logdata['xml'] = $xml;
+        $logdata['header'] = [];
+        $logdata['timeOut'] = $timeOut;
+        $start = time();
+
+        //发起查询请求
+        $response = self::postXmlCurl($configObj, $xml, self::REFUND_QUERY_API, false, $timeOut);
+
+        $end   = time();
+        $logdata['response'] = $response;
+        $logdata['costTime'] = $end - $start;
+        $logdata['type'] = 'REFUNDQUERY';
         $logdata['ct'] = $logdata['mt'] = microtime(true);
         $logClass = $configObj->getPayLogClass();
         if ($logClass instanceof LogInterface) {
