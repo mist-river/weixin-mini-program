@@ -1,6 +1,6 @@
-##### weixin-mini-program是一个使用简单、功能丰富的微信小程序开发sdk。
+### weixin-mini-program是一个使用简单、功能丰富的微信小程序开发sdk。
 
-##### 包含功能：
+#### 包含功能：
 
 1. 小程序登录
 
@@ -24,7 +24,7 @@
 
 11. 退款查询
 
-##### 目录及文件介绍
+#### 目录及文件介绍
 1. src为源码目录，tests目录为测试脚本目录。该sdk中所封装的所有功能均有对应的测试脚本。
 
 2. src/Common/Api封装了功能1、3、4、5，src/Common/Tools封装了功能2，src/Pay/Client封装了功能6、8、9、11，src/Pay/Notify封装了功能7、10
@@ -37,8 +37,8 @@
 
 6. WxException.php为微信操作异常类。
 
-##### 安装及使用
-###### 安装
-composer install taofeiyang/weixin-mini-program
-###### 使用
+#### 安装及使用
+##### 安装
+composer require taofeiyang/weixin-mini-program
+##### 使用
 tests目录中有完整的测试脚本，这些脚本可以作为demo直接参考使用，所有测试脚本均通过phpunit测试通过。
